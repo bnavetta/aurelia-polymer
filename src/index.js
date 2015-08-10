@@ -33,7 +33,7 @@ export function configure(aurelia){
 
   bindingLanguage.attributeMap['bind-value'] = 'bindValue';
 
-  let registrations = Polymer.telemetry.observations;
+  let registrations = Polymer.telemetry.registrations;
   registrations.forEach(prototype => registerElement(eventManager, bindingLanguage, prototype));
   observerLocator.getArrayObserver(registrations).subscribe(changes => {
     changes.forEach(change => {
