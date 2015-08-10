@@ -39,7 +39,7 @@ System.register(['aurelia-framework', 'aurelia-templating-binding'], function (_
 
     bindingLanguage.attributeMap['bind-value'] = 'bindValue';
 
-    var registrations = Polymer.telemetry.observations;
+    var registrations = Polymer.telemetry.registrations;
     registrations.forEach(function (prototype) {
       return registerElement(eventManager, bindingLanguage, prototype);
     });
