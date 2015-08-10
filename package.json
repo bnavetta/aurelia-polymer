@@ -1,22 +1,22 @@
 {
-  "name": "aurelia-skeleton-plugin",
-  "version": "0.2.1",
-  "description": "A starter kit for building an Aurelia plugin.",
+  "name": "aurelia-polymer",
+  "version": "0.1.0",
+  "description": "An Aurelia plugin for Polymer support.",
   "keywords": [
     "aurelia",
     "plugin",
-    "skeleton"
+    "polymer"
   ],
-  "homepage": "http://aurelia.io",
+  "homepage": "https://github.com/roguePanda/aurelia-polymer",
   "bugs": {
-    "url": "https://github.com/aurelia/skeleton-plugin/issues"
+    "url": "https://github.com/roguePanda/aurelia-polymer/issues"
   },
   "license": "MIT",
-  "author": "Rob Eisenberg <rob@bluespire.com> (http://robeisenberg.com/)",
+  "author": "Ben Navetta <ben.navetta@gmail.com>",
   "main": "dist/commonjs/index.js",
   "repository": {
     "type": "git",
-    "url": "http://github.com/aurelia/skeleton-plugin"
+    "url": "http://github.com/roguePanda/aurelia-polymer"
   },
   "devDependencies": {
     "aurelia-tools": "^0.1.3",
@@ -47,6 +47,16 @@
     "directories": {
       "lib": "dist/amd"
     },
-    "dependencies": {}
+    "dependencies": {
+      "aurelia-framework": "github:aurelia/framework@^0.13.3",
+      "aurelia-templating-binding": "github:aurelia/templating-binding@^0.13.2"
+    },
+    "devDependencies": {
+      "babel": "npm:babel-core@^5.1.13",
+      "babel-runtime": "npm:babel-runtime@^5.1.13",
+      "core-js": "npm:core-js@^0.9.4",
+      "traceur": "github:jmcriffey/bower-traceur@0.0.88",
+      "traceur-runtime": "github:jmcriffey/bower-traceur-runtime@0.0.88"
+    }
   }
 }
