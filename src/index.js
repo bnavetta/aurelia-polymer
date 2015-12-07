@@ -1,5 +1,8 @@
 import {EventManager, ObserverLocator} from 'aurelia-framework';
 import {TemplatingBindingLanguage} from 'aurelia-templating-binding';
+import * as LogManager from 'aurelia-logging';
+
+const logger = LogManager.getLogger('polymer');
 
 function registerElement(eventManager, bindingLanguage, prototype) {
   var propertyConfig = {'bind-value': ['change']}; // Not explicitly listed for all elements that use it
@@ -19,6 +22,8 @@ function registerElement(eventManager, bindingLanguage, prototype) {
         .forEach(propName => handleProp(propName, behavior.properties[propName]));
     }
   });
+
+  logger.debug("Registering configuration for " + prototype.is + ": " + propertyConfig);
 
   eventManager.registerElementConfig({
     tagName: prototype.is,
