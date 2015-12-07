@@ -1,6 +1,6 @@
 {
   "name": "aurelia-polymer",
-  "version": "0.1.1",
+  "version": "1.0.0-beta",
   "description": "An Aurelia plugin for Polymer support.",
   "keywords": [
     "aurelia",
