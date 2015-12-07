@@ -1,7 +1,7 @@
-System.register(['aurelia-framework', 'aurelia-templating-binding'], function (_export) {
+System.register(['aurelia-framework', 'aurelia-templating-binding', 'aurelia-logging'], function (_export) {
   'use strict';
 
-  var EventManager, ObserverLocator, TemplatingBindingLanguage;
+  var EventManager, ObserverLocator, TemplatingBindingLanguage, LogManager, logger;
 
   _export('configure', configure);
 
@@ -25,6 +25,8 @@ System.register(['aurelia-framework', 'aurelia-templating-binding'], function (_
         });
       }
     });
+
+    logger.debug("Registering configuration for " + prototype.is + ": " + propertyConfig);
 
     eventManager.registerElementConfig({
       tagName: prototype.is,
@@ -61,7 +63,11 @@ System.register(['aurelia-framework', 'aurelia-templating-binding'], function (_
       ObserverLocator = _aureliaFramework.ObserverLocator;
     }, function (_aureliaTemplatingBinding) {
       TemplatingBindingLanguage = _aureliaTemplatingBinding.TemplatingBindingLanguage;
+    }, function (_aureliaLogging) {
+      LogManager = _aureliaLogging;
     }],
-    execute: function () {}
+    execute: function () {
+      logger = LogManager.getLogger('polymer');
+    }
   };
 });

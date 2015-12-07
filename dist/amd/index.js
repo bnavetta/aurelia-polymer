@@ -1,10 +1,12 @@
-define(['exports', 'aurelia-framework', 'aurelia-templating-binding'], function (exports, _aureliaFramework, _aureliaTemplatingBinding) {
+define(['exports', 'aurelia-framework', 'aurelia-templating-binding', 'aurelia-logging'], function (exports, _aureliaFramework, _aureliaTemplatingBinding, _aureliaLogging) {
   'use strict';
 
   Object.defineProperty(exports, '__esModule', {
     value: true
   });
   exports.configure = configure;
+
+  var logger = _aureliaLogging.getLogger('polymer');
 
   function registerElement(eventManager, bindingLanguage, prototype) {
     var propertyConfig = { 'bind-value': ['change'] };
@@ -26,6 +28,8 @@ define(['exports', 'aurelia-framework', 'aurelia-templating-binding'], function 
         });
       }
     });
+
+    logger.debug("Registering configuration for " + prototype.is + ": " + propertyConfig);
 
     eventManager.registerElementConfig({
       tagName: prototype.is,
