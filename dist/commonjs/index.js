@@ -18,11 +18,11 @@ var LogManager = _interopRequireWildcard(_aureliaLogging);
 var logger = LogManager.getLogger('polymer');
 
 function registerElement(eventManager, bindingLanguage, prototype) {
-  var propertyConfig = { 'bind-value': ['change'] };
+  var propertyConfig = { 'bind-value': ['change', 'input'] };
 
   function handleProp(propName, prop) {
     if (prop.notify) {
-      propertyConfig[propName] = ['change'];
+      propertyConfig[propName] = ['change', 'input'];
     }
   }
 
@@ -38,7 +38,7 @@ function registerElement(eventManager, bindingLanguage, prototype) {
     }
   });
 
-  logger.debug("Registering configuration for " + prototype.is + ": " + propertyConfig);
+  logger.debug("Registering configuration for Polymer element [" + prototype.is + "]");
 
   eventManager.registerElementConfig({
     tagName: prototype.is,
@@ -49,22 +49,20 @@ function registerElement(eventManager, bindingLanguage, prototype) {
 function configure(aurelia) {
   var eventManager = aurelia.container.get(_aureliaFramework.EventManager);
   var bindingLanguage = aurelia.container.get(_aureliaTemplatingBinding.TemplatingBindingLanguage);
-  var observerLocator = aurelia.container.get(_aureliaFramework.ObserverLocator);
 
   bindingLanguage.attributeMap['bind-value'] = 'bindValue';
+
+  logger.debug("Performing initial Polymer binding");
 
   var registrations = Polymer.telemetry.registrations;
   registrations.forEach(function (prototype) {
     return registerElement(eventManager, bindingLanguage, prototype);
   });
-  observerLocator.getArrayObserver(registrations).subscribe(function (changes) {
-    changes.forEach(function (change) {
-      if (change.type === "splice" && change.addedCount > 0) {
-        for (var i = 0; i < change.addedCount; i++) {
-          var prototype = change.object[change.index + i - 1];
-          registerElement(eventManager, bindingLanguage, prototype);
-        }
-      }
-    });
-  });
+
+  var oldRegistrate = Polymer.telemetry._registrate.bind(Polymer.telemetry);
+
+  Polymer.telemetry._registrate = function (prototype) {
+    oldRegistrate(prototype);
+    registerElement(eventManager, bindingLanguage, prototype);
+  };
 }
