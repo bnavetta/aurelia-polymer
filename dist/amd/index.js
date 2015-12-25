@@ -1,15 +1,36 @@
-define(['exports', 'aurelia-framework', 'aurelia-templating-binding', 'aurelia-logging'], function (exports, _aureliaFramework, _aureliaTemplatingBinding, _aureliaLogging) {
-  'use strict';
+'use strict';
 
-  Object.defineProperty(exports, '__esModule', {
+define(['exports', 'aurelia-framework', 'aurelia-templating-binding', 'aurelia-logging'], function (exports, _aureliaFramework, _aureliaTemplatingBinding, _aureliaLogging) {
+  Object.defineProperty(exports, "__esModule", {
     value: true
   });
   exports.configure = configure;
 
-  var logger = _aureliaLogging.getLogger('polymer');
+  var LogManager = _interopRequireWildcard(_aureliaLogging);
+
+  function _interopRequireWildcard(obj) {
+    if (obj && obj.__esModule) {
+      return obj;
+    } else {
+      var newObj = {};
+
+      if (obj != null) {
+        for (var key in obj) {
+          if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
+        }
+      }
+
+      newObj.default = obj;
+      return newObj;
+    }
+  }
+
+  var logger = LogManager.getLogger('polymer');
 
   function registerElement(eventManager, bindingLanguage, prototype) {
-    var propertyConfig = { 'bind-value': ['change', 'input'] };
+    var propertyConfig = {
+      'bind-value': ['change', 'input']
+    };
 
     function handleProp(propName, prop) {
       if (prop.notify) {
@@ -20,7 +41,6 @@ define(['exports', 'aurelia-framework', 'aurelia-templating-binding', 'aurelia-l
     Object.keys(prototype.properties).forEach(function (propName) {
       return handleProp(propName, prototype.properties[propName]);
     });
-
     prototype.behaviors.forEach(function (behavior) {
       if (typeof behavior.properties != 'undefined') {
         Object.keys(behavior.properties).forEach(function (propName) {
@@ -28,9 +48,7 @@ define(['exports', 'aurelia-framework', 'aurelia-templating-binding', 'aurelia-l
         });
       }
     });
-
     logger.debug("Registering configuration for Polymer element [" + prototype.is + "]");
-
     eventManager.registerElementConfig({
       tagName: prototype.is,
       properties: propertyConfig
@@ -40,11 +58,8 @@ define(['exports', 'aurelia-framework', 'aurelia-templating-binding', 'aurelia-l
   function configure(aurelia) {
     var eventManager = aurelia.container.get(_aureliaFramework.EventManager);
     var bindingLanguage = aurelia.container.get(_aureliaTemplatingBinding.TemplatingBindingLanguage);
-
     bindingLanguage.attributeMap['bind-value'] = 'bindValue';
-
     logger.debug("Performing initial Polymer binding");
-
     var registrations = Polymer.telemetry.registrations;
     registrations.forEach(function (prototype) {
       return registerElement(eventManager, bindingLanguage, prototype);

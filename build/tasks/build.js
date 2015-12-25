@@ -1,6 +1,6 @@
 var gulp = require('gulp');
 var runSequence = require('run-sequence');
-var to5 = require('gulp-babel');
+var babel = require('gulp-babel');
 var paths = require('../paths');
 var compilerOptions = require('../babel-options');
 var assign = Object.assign || require('object.assign');
@@ -22,7 +22,7 @@ gulp.task('build-html-commonjs', function () {
 
 gulp.task('build-commonjs', ['build-html-commonjs'], function () {
   return gulp.src(paths.source)
-    .pipe(to5(assign({}, compilerOptions, {modules:'common'})))
+    .pipe(babel(assign({}, compilerOptions, {presets: ['es2015']})))
     .pipe(gulp.dest(paths.output + 'commonjs'));
 });
 
@@ -33,7 +33,9 @@ gulp.task('build-html-amd', function () {
 
 gulp.task('build-amd', ['build-html-amd'], function () {
   return gulp.src(paths.source)
-    .pipe(to5(assign({}, compilerOptions, {modules:'amd'})))
+    .pipe(babel(assign({}, compilerOptions, {
+      presets: ['es2015'],
+      plugins: ['transform-es2015-modules-amd']})))
     .pipe(gulp.dest(paths.output + 'amd'));
 });
 
@@ -44,7 +46,9 @@ gulp.task('build-html-system', function () {
 
 gulp.task('build-system', ['build-html-system'], function () {
   return gulp.src(paths.source)
-    .pipe(to5(assign({}, compilerOptions, {modules:'system'})))
+    .pipe(babel(assign({}, compilerOptions, {
+      presets: ['es2015'],
+      plugins: ['transform-es2015-modules-systemjs']})))
     .pipe(gulp.dest(paths.output + 'system'));
 });
 
