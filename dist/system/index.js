@@ -44,6 +44,11 @@ System.register(['aurelia-framework', 'aurelia-templating-binding', 'aurelia-log
       logger = LogManager.getLogger('polymer');
 
       function configure(aurelia) {
+        if (!('Polymer' in window)) {
+          logger.error("Polymer is not loaded");
+          return;
+        }
+
         var eventManager = aurelia.container.get(EventManager);
         var bindingLanguage = aurelia.container.get(TemplatingBindingLanguage);
         bindingLanguage.attributeMap['bind-value'] = 'bindValue';

@@ -56,6 +56,11 @@ define(['exports', 'aurelia-framework', 'aurelia-templating-binding', 'aurelia-l
   }
 
   function configure(aurelia) {
+    if (!('Polymer' in window)) {
+      logger.error("Polymer is not loaded");
+      return;
+    }
+
     var eventManager = aurelia.container.get(_aureliaFramework.EventManager);
     var bindingLanguage = aurelia.container.get(_aureliaTemplatingBinding.TemplatingBindingLanguage);
     bindingLanguage.attributeMap['bind-value'] = 'bindValue';

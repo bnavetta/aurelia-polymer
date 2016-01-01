@@ -32,6 +32,11 @@ function registerElement(eventManager, bindingLanguage, prototype) {
 }
 
 export function configure(aurelia){
+  if (!('Polymer' in window)) {
+    logger.error("Polymer is not loaded");
+    return;
+  }
+
   let eventManager = aurelia.container.get(EventManager);
   let bindingLanguage = aurelia.container.get(TemplatingBindingLanguage);
   // let observerLocator = aurelia.container.get(ObserverLocator);
@@ -49,15 +54,4 @@ export function configure(aurelia){
     oldRegistrate(prototype);
     registerElement(eventManager, bindingLanguage, prototype);
   };
-
-  // observerLocator.getArrayObserver(registrations).subscribe(changes => {
-  //   changes.forEach(change => {
-  //     if (change.type === "splice" && change.addedCount > 0) {
-  //       for (let i = 0; i < change.addedCount; i++) {
-  //         let prototype = change.object[change.index + i - 1];
-  //         registerElement(eventManager, bindingLanguage, prototype);
-  //       }
-  //     }
-  //   });
-  // });
 }
