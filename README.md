@@ -3,37 +3,9 @@
 This plugin configures [Aurelia](http://www.aurelia.io/) and [Polymer](https://www.polymer-project.org/)
 to work with each other.
 
-## Installation and Usage
-
-1. Install the plugin via `jspm`
-```
-jspm install aurelia-polymer=github:roguePanda/aurelia-polymer@^0.1.0
-```
-
-2. Use [manual bootstrapping](http://aurelia.io/docs#startup-and-configuration).
-
-3. In your `configure` function, load the plugin.
-
-```js
-export function configure(aurelia) {
-  aurelia.use
-    .standardConfiguration()
-    .developmentLogging()
-    .plugin('aurelia-polymer');
-
-    aurelia.start().then(a => a.setRoot());
-}
-```
-
-4. In `index.html`, defer loading Aurelia until Polymer has loaded.
-
-```html
-<script>
-  document.addEventListener('WebComponentsReady', function() {
-    System.import('aurelia-bootstrapper');
-  });
-</script>
-```
+See [the Aurelia
+documentation](http://aurelia.io/docs.html#/aurelia/framework/1.0.0-beta.1.1.3/doc/article/integrating-with-polymer)
+for installation and usage instructions.
 
 ## Building The Code
 
