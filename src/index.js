@@ -21,7 +21,13 @@ function registerElement(eventManager, bindingLanguage, prototype) {
       Object.keys(behavior.properties)
         .forEach(propName => handleProp(propName, behavior.properties[propName]));
     }
+
+    if (Polymer.IronSelectableBehavior && behavior === Polymer.IronSelectableBehavior) {
+      propertyConfig['selected'] = ['iron-select', 'iron-deselect', 'iron-items-changed'];
+    }
   });
+
+  // TODO: general override mechanism for specific Polymer elements and behaviors
 
   logger.debug("Registering configuration for Polymer element [" + prototype.is + "]");
 

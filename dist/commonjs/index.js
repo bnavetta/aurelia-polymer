@@ -36,6 +36,10 @@ function registerElement(eventManager, bindingLanguage, prototype) {
         return handleProp(propName, behavior.properties[propName]);
       });
     }
+
+    if (Polymer.IronSelectableBehavior && behavior === Polymer.IronSelectableBehavior) {
+      propertyConfig['selected'] = ['iron-select', 'iron-deselect', 'iron-items-changed'];
+    }
   });
 
   logger.debug("Registering configuration for Polymer element [" + prototype.is + "]");
