@@ -1,6 +1,6 @@
 {
   "name": "aurelia-polymer",
-  "version": "1.0.0-beta",
+  "version": "1.0.0-beta.1.0.3",
   "description": "An Aurelia plugin for Polymer support.",
   "keywords": [
     "aurelia",
@@ -33,6 +33,7 @@
     "jasmine-core": "^2.4.1",
     "jshint": "^2.9.1",
     "jshint-stylish": "^2.1.0",
+    "jspm": "^0.16.33",
     "karma": "^0.13.22",
     "karma-babel-preprocessor": "^6.0.1",
     "karma-chrome-launcher": "^0.2.3",
@@ -52,9 +53,14 @@
       "lib": "dist/amd"
     },
     "dependencies": {
-      "aurelia-framework": "npm:aurelia-framework@^1.0.0-beta.1",
-      "aurelia-logging": "npm:aurelia-logging@^1.0.0-beta.1",
-      "aurelia-templating-binding": "npm:aurelia-templating-binding@^1.0.0-beta.1"
+      "aurelia-framework": "npm:aurelia-framework@^1.0.0-beta.1.2.2",
+      "aurelia-logging": "npm:aurelia-logging@^1.0.0-beta.1.2.0",
+      "aurelia-templating-binding": "npm:aurelia-templating-binding@^1.0.0-beta.1.2.1"
+    },
+    "devDependencies": {
+      "babel": "npm:babel-core@^5.8.24",
+      "babel-runtime": "npm:babel-runtime@^5.8.24",
+      "core-js": "npm:core-js@^1.1.4"
     }
   }
 }
