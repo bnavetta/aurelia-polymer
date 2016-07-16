@@ -7,6 +7,14 @@ See [the Aurelia
 documentation](http://aurelia.io/docs.html#/aurelia/framework/1.0.0-beta.1.1.3/doc/article/integrating-with-polymer)
 for installation and usage instructions.
 
+## Using with Webpack
+
+If you're using webpack, you won't be able to use `aurelia-html-import-template-loader`, which means you won't be able
+to load Polymer elements in your templates directly (see #18). Instead, it's suggested that you use
+[vulcanize](https://github.com/Polymer/vulcanize) to bundle all the Polymer elements you use into one file that can
+be loaded in `index.html`. The elements will still be available in your templates once loaded, but this avoids the syntax
+issues that require the HTML import template loader.
+
 ## Building The Code
 
 To build the code, follow these steps.
