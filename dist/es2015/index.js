@@ -1,11 +1,11 @@
-import {EventManager, ObserverLocator} from 'aurelia-framework';
-import {TemplatingBindingLanguage} from 'aurelia-templating-binding';
+import { EventManager } from 'aurelia-framework';
+import { TemplatingBindingLanguage } from 'aurelia-templating-binding';
 import * as LogManager from 'aurelia-logging';
 
 const logger = LogManager.getLogger('polymer');
 
 function registerElement(eventManager, bindingLanguage, prototype) {
-  var propertyConfig = {'bind-value': ['change', 'input']}; // Not explicitly listed for all elements that use it
+  let propertyConfig = { 'bind-value': ['change', 'input'] };
 
   function handleProp(propName, prop) {
     if (prop.notify) {
@@ -13,23 +13,19 @@ function registerElement(eventManager, bindingLanguage, prototype) {
     }
   }
 
-  Object.keys(prototype.properties)
-    .forEach(propName => handleProp(propName, prototype.properties[propName]));
+  Object.keys(prototype.properties).forEach(propName => handleProp(propName, prototype.properties[propName]));
 
   prototype.behaviors.forEach(behavior => {
-    if (typeof behavior.properties != 'undefined') {
-      Object.keys(behavior.properties)
-        .forEach(propName => handleProp(propName, behavior.properties[propName]));
+    if (typeof behavior.properties !== 'undefined') {
+      Object.keys(behavior.properties).forEach(propName => handleProp(propName, behavior.properties[propName]));
     }
 
     if (Polymer.IronSelectableBehavior && behavior === Polymer.IronSelectableBehavior) {
-      propertyConfig['selected'] = ['iron-select', 'iron-deselect', 'iron-items-changed'];
+      propertyConfig.selected = ['iron-select', 'iron-deselect', 'iron-items-changed'];
     }
   });
 
-  // TODO: general override mechanism for specific Polymer elements and behaviors
-
-  logger.debug("Registering configuration for Polymer element [" + prototype.is + "]");
+  logger.debug(`Registering configuration for Polymer element ["${ prototype.is }]`);
 
   eventManager.registerElementConfig({
     tagName: prototype.is,
@@ -37,19 +33,22 @@ function registerElement(eventManager, bindingLanguage, prototype) {
   });
 }
 
-export function configure(aurelia){
+export function configure(aurelia) {
+  logger.info('Initializing aurelia-polymer');
+
+  aurelia.globalResources('./au-select-custom-attribute');
+
   if (!('Polymer' in window)) {
-    logger.error("Polymer is not loaded");
+    logger.error('Polymer is not loaded');
     return;
   }
 
   let eventManager = aurelia.container.get(EventManager);
   let bindingLanguage = aurelia.container.get(TemplatingBindingLanguage);
-  // let observerLocator = aurelia.container.get(ObserverLocator);
 
   bindingLanguage.attributeMap['bind-value'] = 'bindValue';
 
-  logger.debug("Performing initial Polymer binding");
+  logger.debug('Performing initial Polymer binding');
 
   let registrations = Polymer.telemetry.registrations;
   registrations.forEach(prototype => registerElement(eventManager, bindingLanguage, prototype));

@@ -31,18 +31,18 @@ function registerElement(eventManager, bindingLanguage, prototype) {
   });
 
   prototype.behaviors.forEach(function (behavior) {
-    if (typeof behavior.properties != 'undefined') {
+    if (typeof behavior.properties !== 'undefined') {
       Object.keys(behavior.properties).forEach(function (propName) {
         return handleProp(propName, behavior.properties[propName]);
       });
     }
 
     if (Polymer.IronSelectableBehavior && behavior === Polymer.IronSelectableBehavior) {
-      propertyConfig['selected'] = ['iron-select', 'iron-deselect', 'iron-items-changed'];
+      propertyConfig.selected = ['iron-select', 'iron-deselect', 'iron-items-changed'];
     }
   });
 
-  logger.debug("Registering configuration for Polymer element [" + prototype.is + "]");
+  logger.debug('Registering configuration for Polymer element ["' + prototype.is + ']');
 
   eventManager.registerElementConfig({
     tagName: prototype.is,
@@ -51,8 +51,12 @@ function registerElement(eventManager, bindingLanguage, prototype) {
 }
 
 function configure(aurelia) {
+  logger.info('Initializing aurelia-polymer');
+
+  aurelia.globalResources('./au-select-custom-attribute');
+
   if (!('Polymer' in window)) {
-    logger.error("Polymer is not loaded");
+    logger.error('Polymer is not loaded');
     return;
   }
 
@@ -61,7 +65,7 @@ function configure(aurelia) {
 
   bindingLanguage.attributeMap['bind-value'] = 'bindValue';
 
-  logger.debug("Performing initial Polymer binding");
+  logger.debug('Performing initial Polymer binding');
 
   var registrations = Polymer.telemetry.registrations;
   registrations.forEach(function (prototype) {
