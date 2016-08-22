@@ -28,6 +28,7 @@ function registerElement(eventManager, bindingLanguage, prototype) {
   });
 
   // TODO: general override mechanism for specific Polymer elements and behaviors
+  // TODO: need to map element/behavior name + properties => events
 
   logger.debug("Registering configuration for Polymer element [" + prototype.is + "]");
 
@@ -37,7 +38,11 @@ function registerElement(eventManager, bindingLanguage, prototype) {
   });
 }
 
-export function configure(aurelia){
+export function configure(aurelia) {
+  logger.info('Initializing aurelia-polymer');
+
+  aurelia.globalResources('./au-select-custom-attribute');
+
   if (!('Polymer' in window)) {
     logger.error("Polymer is not loaded");
     return;
