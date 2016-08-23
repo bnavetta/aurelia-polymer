@@ -22,7 +22,7 @@ function registerElement(eventManager, bindingLanguage, prototype) {
 
   function handleProp(propName, prop) {
     if (prop.notify) {
-      propertyConfig[propName] = ['change', 'input'];
+      propertyConfig[propName] = [propName + '-changed', 'change', 'input'];
     }
   }
 

@@ -32,7 +32,7 @@ define(['exports', 'aurelia-framework', 'aurelia-templating-binding', 'aurelia-l
 
     function handleProp(propName, prop) {
       if (prop.notify) {
-        propertyConfig[propName] = ['change', 'input'];
+        propertyConfig[propName] = [propName + '-changed', 'change', 'input'];
       }
     }
 
