@@ -1,7 +1,7 @@
-import {Element} from 'aurelia-framework';
+import {DOM} from 'aurelia-framework';
 
 export class AuSelectCustomAttribute {
-  static inject = [Element];
+  static inject = [DOM.Element];
 
   constructor(element) {
     element._updateItems = function() {
