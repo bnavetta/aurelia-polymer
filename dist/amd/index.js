@@ -1,4 +1,4 @@
-define(['exports', 'aurelia-framework', 'aurelia-templating-binding', 'aurelia-logging'], function (exports, _aureliaFramework, _aureliaTemplatingBinding, _aureliaLogging) {
+define(['exports', 'aurelia-framework', 'aurelia-templating-binding', 'aurelia-logging', './au-select-custom-attribute'], function (exports, _aureliaFramework, _aureliaTemplatingBinding, _aureliaLogging, _auSelectCustomAttribute) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
@@ -72,6 +72,7 @@ define(['exports', 'aurelia-framework', 'aurelia-templating-binding', 'aurelia-l
 
     var eventManager = aurelia.container.get(_aureliaFramework.EventManager);
     var bindingLanguage = aurelia.container.get(_aureliaTemplatingBinding.TemplatingBindingLanguage);
+
 
     bindingLanguage.attributeMap['bind-value'] = 'bindValue';
 

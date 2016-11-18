@@ -1,6 +1,7 @@
 import {EventManager} from 'aurelia-framework';
 import {TemplatingBindingLanguage} from 'aurelia-templating-binding';
 import * as LogManager from 'aurelia-logging';
+import { AuSelectCustomAttribute } from './au-select-custom-attribute';
 
 const logger = LogManager.getLogger('polymer');
 

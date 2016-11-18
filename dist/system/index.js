@@ -1,9 +1,10 @@
 'use strict';
 
-System.register(['aurelia-framework', 'aurelia-templating-binding', 'aurelia-logging'], function (_export, _context) {
+System.register(['aurelia-framework', 'aurelia-templating-binding', 'aurelia-logging', './au-select-custom-attribute'], function (_export, _context) {
   "use strict";
 
-  var EventManager, TemplatingBindingLanguage, LogManager, logger;
+  var EventManager, TemplatingBindingLanguage, LogManager, AuSelectCustomAttribute, logger;
+
 
   function registerElement(eventManager, bindingLanguage, prototype) {
     var propertyConfig = { 'bind-value': ['change', 'input'] };
@@ -51,6 +52,7 @@ System.register(['aurelia-framework', 'aurelia-templating-binding', 'aurelia-log
     var eventManager = aurelia.container.get(EventManager);
     var bindingLanguage = aurelia.container.get(TemplatingBindingLanguage);
 
+
     bindingLanguage.attributeMap['bind-value'] = 'bindValue';
 
     logger.debug('Performing initial Polymer binding');
@@ -77,6 +79,8 @@ System.register(['aurelia-framework', 'aurelia-templating-binding', 'aurelia-log
       TemplatingBindingLanguage = _aureliaTemplatingBinding.TemplatingBindingLanguage;
     }, function (_aureliaLogging) {
       LogManager = _aureliaLogging;
+    }, function (_auSelectCustomAttribute) {
+      AuSelectCustomAttribute = _auSelectCustomAttribute.AuSelectCustomAttribute;
     }],
     execute: function () {
       logger = LogManager.getLogger('polymer');

@@ -3,7 +3,7 @@
 System.register(['aurelia-framework'], function (_export, _context) {
   "use strict";
 
-  var Element, _class, _temp, AuSelectCustomAttribute;
+  var DOM, _class, _temp, AuSelectCustomAttribute;
 
   function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
@@ -13,7 +13,7 @@ System.register(['aurelia-framework'], function (_export, _context) {
 
   return {
     setters: [function (_aureliaFramework) {
-      Element = _aureliaFramework.Element;
+      DOM = _aureliaFramework.DOM;
     }],
     execute: function () {
       _export('AuSelectCustomAttribute', AuSelectCustomAttribute = (_temp = _class = function AuSelectCustomAttribute(element) {
@@ -23,7 +23,7 @@ System.register(['aurelia-framework'], function (_export, _context) {
           var nodes = window.Polymer.dom(this).querySelectorAll(this.selectable || '*').filter(this._bindFilterItem);
           this._setItems(nodes);
         };
-      }, _class.inject = [Element], _temp));
+      }, _class.inject = [DOM.Element], _temp));
 
       _export('AuSelectCustomAttribute', AuSelectCustomAttribute);
     }
