@@ -1,6 +1,7 @@
 import { EventManager } from 'aurelia-framework';
 import { TemplatingBindingLanguage } from 'aurelia-templating-binding';
 import * as LogManager from 'aurelia-logging';
+import { AuSelectCustomAttribute } from './au-select-custom-attribute';
 
 const logger = LogManager.getLogger('polymer');
 
@@ -45,6 +46,7 @@ export function configure(aurelia) {
 
   let eventManager = aurelia.container.get(EventManager);
   let bindingLanguage = aurelia.container.get(TemplatingBindingLanguage);
+
 
   bindingLanguage.attributeMap['bind-value'] = 'bindValue';
 

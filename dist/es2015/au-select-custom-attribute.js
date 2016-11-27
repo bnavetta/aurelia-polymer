@@ -1,6 +1,6 @@
 var _class, _temp;
 
-import { Element } from 'aurelia-framework';
+import { DOM } from 'aurelia-framework';
 
 export let AuSelectCustomAttribute = (_temp = _class = class AuSelectCustomAttribute {
 
@@ -10,4 +10,4 @@ export let AuSelectCustomAttribute = (_temp = _class = class AuSelectCustomAttri
       this._setItems(nodes);
     };
   }
-}, _class.inject = [Element], _temp);
+}, _class.inject = [DOM.Element], _temp);
