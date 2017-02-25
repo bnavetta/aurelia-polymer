@@ -1,3 +1,9 @@
+# No Longer Maintained
+
+I'm no longer using Aurelia or Polymer on a regular basis, and I haven't had
+the time to actively maintain this project or keep sufficiently up-to-date to
+fix most new issues.
+
 # aurelia-polymer
 
 This plugin configures [Aurelia](http://www.aurelia.io/) and [Polymer](https://www.polymer-project.org/)
