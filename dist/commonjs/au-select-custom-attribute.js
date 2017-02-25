@@ -18,4 +18,4 @@ var AuSelectCustomAttribute = exports.AuSelectCustomAttribute = (_temp = _class 
     var nodes = window.Polymer.dom(this).querySelectorAll(this.selectable || '*').filter(this._bindFilterItem);
     this._setItems(nodes);
   };
-}, _class.inject = [_aureliaFramework.Element], _temp);
+}, _class.inject = [_aureliaFramework.DOM.Element], _temp);

@@ -13,6 +13,8 @@ var _aureliaLogging = require('aurelia-logging');
 
 var LogManager = _interopRequireWildcard(_aureliaLogging);
 
+var _auSelectCustomAttribute = require('./au-select-custom-attribute');
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 var logger = LogManager.getLogger('polymer');
@@ -62,6 +64,7 @@ function configure(aurelia) {
 
   var eventManager = aurelia.container.get(_aureliaFramework.EventManager);
   var bindingLanguage = aurelia.container.get(_aureliaTemplatingBinding.TemplatingBindingLanguage);
+
 
   bindingLanguage.attributeMap['bind-value'] = 'bindValue';
 
